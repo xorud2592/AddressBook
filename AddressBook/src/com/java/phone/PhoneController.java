@@ -2,6 +2,8 @@ package com.java.phone;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PhoneController {
 	static final String MEMU_INFO = "*****************************************\n"
@@ -122,6 +124,7 @@ public class PhoneController {
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
 			if (numberInfo.findName(target)) {
 				System.out.println(count++ + ". " + numberInfo.showInfo());
+				numberInfo.check();;
 			}
 		}
 		if (count == 1) {

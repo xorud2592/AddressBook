@@ -18,6 +18,9 @@ public class PhoneNumberInfo {
 		this.houseNumber = houseNumber;
 	}
 
+	public void check() {
+	}
+
 	@Override
 	public String toString() {
 		return name + "," + phoneNumber + "," + houseNumber;
@@ -54,7 +57,6 @@ public class PhoneNumberInfo {
 	public boolean checkNumber() {
 		String[] phoneNumberInts = phoneNumber.trim().split("-");
 		String[] houseNumberInts = houseNumber.trim().split("-");
-
 		if (phoneNumberInts.length != 3 || houseNumberInts.length != 3) {
 			System.out.println(INPUT_FORM_ERROR);
 			return false;
@@ -82,5 +84,17 @@ public class PhoneNumberInfo {
 			return false;
 		}
 		return true;
+
+//
+//		Pattern numberPattern = Pattern.compile("^\\d{2,3}-\\d{3,4}-\\d{4}$");
+//		Matcher phoneNumberMatcher  = numberPattern.matcher(phoneNumber);
+//		Matcher houseNumberMatcher  = numberPattern.matcher(houseNumber);
+//		
+//		if(phoneNumberMatcher.find() && houseNumberMatcher.find())
+//		{
+//			return true;
+//		}
+//		System.out.println(INPUT_FORM_ERROR);
+//		return false;
 	}
 }
