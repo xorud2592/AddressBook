@@ -94,7 +94,7 @@ public class PhoneController {
 
 		PhoneNumberInfo newNumberInfo = new PhoneNumberInfo(name, phoneNumber, houseNumber);
 
-		if (infoSameCheck(phoneNumberDB, newNumberInfo)) {
+		if (infoSameCheck(phoneNumberDB, newNumberInfo) && newNumberInfo.checkNumber()) {
 			phoneNumberDB.add(newNumberInfo);
 			PhoneNumberDBReset.updateNumberInfo(phoneNumberDB);
 			System.out.println(ADD_MESSAGE);
