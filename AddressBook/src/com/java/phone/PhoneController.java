@@ -77,7 +77,7 @@ public class PhoneController {
 		System.out.println(MENU_SHOWINFO_MESSAGE);
 		int count = 1;
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
-			System.out.println(count++ + ". " + numberInfo.toString());
+			System.out.println(count++ + ". " + numberInfo.showInfo());
 		}
 	}
 
@@ -121,7 +121,7 @@ public class PhoneController {
 		int count = 1;
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
 			if (numberInfo.findName(target)) {
-				System.out.println(count++ + ". " + numberInfo.toString());
+				System.out.println(count++ + ". " + numberInfo.showInfo());
 			}
 		}
 		if (count == 1) {

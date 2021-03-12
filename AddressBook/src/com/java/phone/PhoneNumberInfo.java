@@ -1,5 +1,8 @@
 package com.java.phone;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PhoneNumberInfo {
 
 	static final String INPUT_NUMBER_ERROR = "숫자만 입력해주세요";
@@ -17,6 +20,10 @@ public class PhoneNumberInfo {
 
 	@Override
 	public String toString() {
+		return name + "," + phoneNumber + "," + houseNumber;
+	}
+
+	public String showInfo() {
 		return String.format("%-6s %-15s %-15s", name, filter(phoneNumber), filter(houseNumber));
 	}
 
@@ -57,15 +64,16 @@ public class PhoneNumberInfo {
 			if (houseNumberInts[0].length() == 0 || phoneNumberInts[0].length() == 0)
 				throw new Exception();
 			for (int count = 0; count < 3; count++) {
-				if (count != 0 && Integer.parseInt(phoneNumberInts[count]) / 100 <= 0
-						&& Integer.parseInt(phoneNumberInts[count]) / 10000 == 0)
+				if (count != 0 && (Integer.parseInt(phoneNumberInts[count]) < 100
+						|| Integer.parseInt(phoneNumberInts[count]) > 10000))
 					throw new Exception();
 			}
 			for (int count = 0; count < 3; count++) {
-				if (count != 0 && Integer.parseInt(houseNumberInts[count]) / 100 <= 0
-						&& Integer.parseInt(houseNumberInts[count]) / 10000 == 0)
+				if (count != 0 && (Integer.parseInt(houseNumberInts[count]) < 100
+						|| Integer.parseInt(houseNumberInts[count]) > 10000))
 					throw new Exception();
 			}
+
 		} catch (NumberFormatException e) {
 			System.err.println(INPUT_NUMBER_ERROR);
 			return false;
