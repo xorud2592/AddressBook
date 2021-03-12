@@ -20,7 +20,7 @@ public class PhoneController {
 	static final String INPUT_DBSEARCH_ERROR = "[리스트에 없는 숫자입니다.]";
 	static final String INPUT_NAME = ">이름: ";
 	static final String INPUT_NUMBER = ">번호: ";
-
+ 
 	static final String INPUT_PHONENUMBER = ">휴대전화: ";
 	static final String INPUT_HOUSENUMBER = ">집전화: ";
 
