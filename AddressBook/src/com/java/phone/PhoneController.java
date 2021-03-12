@@ -28,8 +28,6 @@ public class PhoneController {
 	static final String END_MESSAGE = "*****************************************\n" + "*\t\t감사합니다\t\t\t*\n"
 			+ "*****************************************";
 
-	static final String DB_ERROR_SAMEINFO = "[중복된 번호가 있습니다.]";
-
 	public static void start(Scanner input) {
 
 		ArrayList<PhoneNumberInfo> phoneNumberDB = PhoneNumberDBReset.reset();
@@ -65,7 +63,7 @@ public class PhoneController {
 					end = true;
 					break;
 				default:
-					System.out.println(INPUT_ERROR);
+					System.err.println(INPUT_ERROR);
 				}
 
 				System.out.println();
@@ -79,7 +77,7 @@ public class PhoneController {
 		System.out.println(MENU_SHOWINFO_MESSAGE);
 		int count = 1;
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
-			System.out.println(count++ + ". " + numberInfo.showInfo());
+			System.out.println(count++ + ". " + numberInfo.toString());
 		}
 	}
 
@@ -94,21 +92,11 @@ public class PhoneController {
 
 		PhoneNumberInfo newNumberInfo = new PhoneNumberInfo(name, phoneNumber, houseNumber);
 
-		if (infoSameCheck(phoneNumberDB, newNumberInfo) && newNumberInfo.checkNumber()) {
+		if (PhoneNumberDBManeger.infoSameCheck(phoneNumberDB, newNumberInfo) && newNumberInfo.checkNumber()) {
 			phoneNumberDB.add(newNumberInfo);
 			PhoneNumberDBReset.updateNumberInfo(phoneNumberDB);
 			System.out.println(ADD_MESSAGE);
 		}
-	}
-
-	private static boolean infoSameCheck(ArrayList<PhoneNumberInfo> phoneNumberDB, PhoneNumberInfo newNumberInfo) {
-		for (PhoneNumberInfo searchDB : phoneNumberDB) {
-			if (searchDB.equals(newNumberInfo)) {
-				System.out.println(DB_ERROR_SAMEINFO);
-				return false;
-			}
-		}
-		return true;
 	}
 
 	private static void deleteNumberInfo(Scanner input, ArrayList<PhoneNumberInfo> phoneNumberDB) {
@@ -133,7 +121,7 @@ public class PhoneController {
 		int count = 1;
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
 			if (numberInfo.findName(target)) {
-				System.out.println(count++ + ". " + numberInfo.showInfo());
+				System.out.println(count++ + ". " + numberInfo.toString());
 			}
 		}
 		if (count == 1) {

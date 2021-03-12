@@ -20,10 +20,10 @@ public class PhoneNumberDBReset {
 	static final String DB_SPLIT_POINT = ",";
 
 	public static ArrayList<PhoneNumberInfo> reset() {
-		ArrayList<PhoneNumberInfo> phoneNumberDB = new ArrayList<PhoneNumberInfo>();
 
 		checkPhoneNumberDB();
-		return readPhoneNumberDB(phoneNumberDB);
+
+		return readPhoneNumberDB();
 	}
 
 	private static void checkPhoneNumberDB() {
@@ -37,7 +37,9 @@ public class PhoneNumberDBReset {
 		}
 	}
 
-	private static ArrayList<PhoneNumberInfo> readPhoneNumberDB(ArrayList<PhoneNumberInfo> phoneNumberDB) {
+	private static ArrayList<PhoneNumberInfo> readPhoneNumberDB() {
+		ArrayList<PhoneNumberInfo> phoneNumberDB = new ArrayList<PhoneNumberInfo>();
+
 		Reader reader = null;
 		BufferedReader br = null;
 
@@ -92,4 +94,5 @@ public class PhoneNumberDBReset {
 			}
 		}
 	}
+
 }

@@ -17,10 +17,6 @@ public class PhoneNumberInfo {
 
 	@Override
 	public String toString() {
-		return name + "," + phoneNumber + "," + houseNumber;
-	}
-
-	public String showInfo() {
 		return String.format("%-6s %-15s %-15s", name, filter(phoneNumber), filter(houseNumber));
 	}
 
@@ -58,6 +54,8 @@ public class PhoneNumberInfo {
 		}
 
 		try {
+			if (houseNumberInts[0].length() == 0 || phoneNumberInts[0].length() == 0)
+				throw new Exception();
 			for (int count = 0; count < 3; count++) {
 				if (count != 0 && Integer.parseInt(phoneNumberInts[count]) / 100 <= 0
 						&& Integer.parseInt(phoneNumberInts[count]) / 10000 == 0)
@@ -73,8 +71,14 @@ public class PhoneNumberInfo {
 			return false;
 		} catch (Exception e) {
 			System.out.println(INPUT_FORM_ERROR);
+			return false;
 		}
 		return true;
 	}
+
+//	@Override
+//	public String toString() {
+//		return name + "," + phoneNumber + "," + houseNumber;
+//	}
 
 }
