@@ -77,7 +77,7 @@ public class PhoneNumberDBReset {
 		try {
 			os = new FileOutputStream(DB);
 			dos = new OutputStreamWriter(os, "UTF-8");
-			br = new BufferedWriter(dos);
+			br = new BufferedWriter(dos); 
 
 			for (PhoneNumberInfo numberInfo : phoneNumberDB) {
 				br.write(numberInfo.toString());
