@@ -75,10 +75,4 @@ public class PhoneNumberInfo {
 		}
 		return true;
 	}
-
-//	@Override
-//	public String toString() {
-//		return name + "," + phoneNumber + "," + houseNumber;
-//	}
-
 }
