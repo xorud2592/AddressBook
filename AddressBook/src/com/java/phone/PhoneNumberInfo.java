@@ -13,9 +13,9 @@ public class PhoneNumberInfo {
 	private String houseNumber;
 
 	public PhoneNumberInfo(String name, String phoneNumber, String houseNumber) {
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-		this.houseNumber = houseNumber;
+		this.name = name.trim();
+		this.phoneNumber = phoneNumber.trim();
+		this.houseNumber = houseNumber.trim();
 	}
 
 	public void check() {
@@ -29,7 +29,10 @@ public class PhoneNumberInfo {
 	public String showInfo() {
 		return String.format("%-6s %-15s %-15s", name, filter(phoneNumber), filter(houseNumber));
 	}
-
+	public String showInfo(int count) {
+		return String.format("%d. %-6s %-15s %-15s", count, name, filter(phoneNumber), filter(houseNumber));
+	}
+	
 	private String filter(String number) {
 		String[] numbers = number.split("-");
 		return numbers[0] + "-" + (numbers[1].substring(0, numbers[1].length() - 2) + "**") + "-"
@@ -55,46 +58,19 @@ public class PhoneNumberInfo {
 	}
 
 	public boolean checkNumber() {
-		String[] phoneNumberInts = phoneNumber.trim().split("-");
-		String[] houseNumberInts = houseNumber.trim().split("-");
-		if (phoneNumberInts.length != 3 || houseNumberInts.length != 3) {
-			System.out.println(INPUT_FORM_ERROR);
-			return false;
+		Pattern phoneNumberPattern = Pattern.compile("^[0-9]{3}-[0-9]{3,4}-[0-9]{4}$");
+		Pattern houseNumberPattern = Pattern.compile("^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$");
+
+		Matcher phoneNumberMatcher = phoneNumberPattern.matcher(phoneNumber);
+		Matcher houseNumberMatcher = houseNumberPattern.matcher(houseNumber);
+
+		if (phoneNumberMatcher.find()) {
+			if (houseNumberMatcher.find()) {
+				return true;
+			}
 		}
 
-		try {
-			if (houseNumberInts[0].length() == 0 || phoneNumberInts[0].length() == 0)
-				throw new Exception();
-			for (int count = 0; count < 3; count++) {
-				if (count != 0 && (Integer.parseInt(phoneNumberInts[count]) < 100
-						|| Integer.parseInt(phoneNumberInts[count]) > 10000))
-					throw new Exception();
-			}
-			for (int count = 0; count < 3; count++) {
-				if (count != 0 && (Integer.parseInt(houseNumberInts[count]) < 100
-						|| Integer.parseInt(houseNumberInts[count]) > 10000))
-					throw new Exception();
-			}
-
-		} catch (NumberFormatException e) {
-			System.err.println(INPUT_NUMBER_ERROR);
-			return false;
-		} catch (Exception e) {
-			System.out.println(INPUT_FORM_ERROR);
-			return false;
-		}
-		return true;
-
-//
-//		Pattern numberPattern = Pattern.compile("^\\d{2,3}-\\d{3,4}-\\d{4}$");
-//		Matcher phoneNumberMatcher  = numberPattern.matcher(phoneNumber);
-//		Matcher houseNumberMatcher  = numberPattern.matcher(houseNumber);
-//		
-//		if(phoneNumberMatcher.find() && houseNumberMatcher.find())
-//		{
-//			return true;
-//		}
-//		System.out.println(INPUT_FORM_ERROR);
-//		return false;
+		System.out.println(INPUT_FORM_ERROR);
+		return false;
 	}
 }
