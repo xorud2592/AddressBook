@@ -13,27 +13,26 @@ public class PhoneNumberInfo {
 
 	@Override
 	public String toString() {
-		return  name + "," + phoneNumber + "," + houseNumber;
+		return name + "," + phoneNumber + "," + houseNumber;
 	}
+
 	public String showInfo() {
-		return String.format("%-6s %-15s %-15s", name,phoneNumber,houseNumber );
+		return String.format("%-6s %-15s %-15s", name, phoneNumber, houseNumber);
 	}
-	
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		 if (obj instanceof PhoneNumberInfo)
-		 {
-			 PhoneNumberInfo temp = (PhoneNumberInfo)obj;
-			 if(this.name.equals(temp.name) && this.phoneNumber.equals(temp.phoneNumber) && this.houseNumber.equals(temp.houseNumber)  )
-				 return true;
-		 }
+		if (obj instanceof PhoneNumberInfo) {
+			PhoneNumberInfo temp = (PhoneNumberInfo) obj;
+			if (this.name.equals(temp.name) && this.phoneNumber.equals(temp.phoneNumber)
+					&& this.houseNumber.equals(temp.houseNumber))
+				return true;
+		}
 		return false;
 	}
 
 	public boolean findName(String target) {
-		if(this.name.indexOf(target) == -1)
-		{
+		if (this.name.indexOf(target) == -1) {
 			return false;
 		}
 		return true;

@@ -12,20 +12,19 @@ public class PhoneController {
 	static final String MENU_ADDINFO_MESSAGE = "<2.이름>";
 	static final String MENU_DELETE_MESSAGE = "<3.삭제>";
 	static final String MENU_SEARCH_MESSAGE = "<4.검색>";
-	
+
 	static final String INPUT_ERROR = "[다시입력해주세요]";
 	static final String INPUT_NUMBERFORMAT_ERROR = "[숫자를 입력해 주세요]";
 	static final String INPUT_DBSEARCH_ERROR = "[리스트에 없는 숫자입니다.]";
-	static final String INPUT_NAME =">이름: ";
-	static final String INPUT_NUMBER =">번호: ";
-	
-	static final String INPUT_PHONENUMBER =">휴대전화: ";
-	static final String INPUT_HOUSENUMBER =">집전화: ";
-	
-	
+	static final String INPUT_NAME = ">이름: ";
+	static final String INPUT_NUMBER = ">번호: ";
+
+	static final String INPUT_PHONENUMBER = ">휴대전화: ";
+	static final String INPUT_HOUSENUMBER = ">집전화: ";
+
 	static final String ADD_MESSAGE = "[등록되었습니다.]";
 	static final String DELETE_MESSAGE = "[삭제되었습니다.]";
-	static final String SEARCH_EMPTY_MESSAGE ="[아무것도 못찾았습니다.]";
+	static final String SEARCH_EMPTY_MESSAGE = "[아무것도 못찾았습니다.]";
 	static final String END_MESSAGE = "*****************************************\n" + "*\t\t감사합니다\t\t\t*\n"
 			+ "*****************************************";
 
@@ -126,7 +125,6 @@ public class PhoneController {
 			System.err.println(INPUT_NUMBERFORMAT_ERROR);
 		}
 	}
-	
 
 	private static void searchNumberInfo(Scanner input, ArrayList<PhoneNumberInfo> phoneNumberDB) {
 		System.out.println(MENU_SEARCH_MESSAGE);
@@ -138,7 +136,7 @@ public class PhoneController {
 				System.out.println(count++ + ". " + numberInfo.showInfo());
 			}
 		}
-		if(count==1) {
+		if (count == 1) {
 			System.out.println(SEARCH_EMPTY_MESSAGE);
 		}
 	}
