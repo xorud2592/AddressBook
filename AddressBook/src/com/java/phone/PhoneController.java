@@ -2,8 +2,6 @@ package com.java.phone;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PhoneController {
 	static final String MEMU_INFO = "*****************************************\n"
@@ -20,7 +18,7 @@ public class PhoneController {
 	static final String INPUT_DBSEARCH_ERROR = "[리스트에 없는 숫자입니다.]";
 	static final String INPUT_NAME = ">이름: ";
 	static final String INPUT_NUMBER = ">번호: ";
- 
+
 	static final String INPUT_PHONENUMBER = ">휴대전화: ";
 	static final String INPUT_HOUSENUMBER = ">집전화: ";
 
@@ -79,7 +77,7 @@ public class PhoneController {
 		System.out.println(MENU_SHOWINFO_MESSAGE);
 		int count = 1;
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
-			System.out.println(count++ + ". " + numberInfo.showInfo());
+			System.out.println(numberInfo.showInfo(count++));
 		}
 	}
 
@@ -105,8 +103,8 @@ public class PhoneController {
 		System.out.println(MENU_DELETE_MESSAGE);
 		System.out.printf(INPUT_NUMBER);
 		try {
-			int target = Integer.parseInt(input.nextLine());
-			phoneNumberDB.remove(phoneNumberDB.get(target - 1));
+			int target = Integer.parseInt(input.nextLine()) -1;
+			phoneNumberDB.remove(phoneNumberDB.get(target));
 			System.out.println(DELETE_MESSAGE);
 			PhoneNumberDBReset.updateNumberInfo(phoneNumberDB);
 		} catch (IndexOutOfBoundsException e) {
@@ -123,8 +121,7 @@ public class PhoneController {
 		int count = 1;
 		for (PhoneNumberInfo numberInfo : phoneNumberDB) {
 			if (numberInfo.findName(target)) {
-				System.out.println(count++ + ". " + numberInfo.showInfo());
-				numberInfo.check();;
+				System.out.println(numberInfo.showInfo(count++));
 			}
 		}
 		if (count == 1) {

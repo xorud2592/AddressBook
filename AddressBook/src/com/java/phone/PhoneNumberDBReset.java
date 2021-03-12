@@ -20,9 +20,7 @@ public class PhoneNumberDBReset {
 	static final String DB_SPLIT_POINT = ",";
 
 	public static ArrayList<PhoneNumberInfo> reset() {
-
 		checkPhoneNumberDB();
-
 		return readPhoneNumberDB();
 	}
 
@@ -39,10 +37,9 @@ public class PhoneNumberDBReset {
 
 	private static ArrayList<PhoneNumberInfo> readPhoneNumberDB() {
 		ArrayList<PhoneNumberInfo> phoneNumberDB = new ArrayList<PhoneNumberInfo>();
-
 		Reader reader = null;
 		BufferedReader br = null;
-
+ 
 		try {
 			reader = new FileReader(DB);
 			br = new BufferedReader(reader);
@@ -65,7 +62,6 @@ public class PhoneNumberDBReset {
 
 			}
 		}
-
 		return phoneNumberDB;
 	}
 
@@ -77,7 +73,7 @@ public class PhoneNumberDBReset {
 		try {
 			os = new FileOutputStream(DB);
 			dos = new OutputStreamWriter(os, "UTF-8");
-			br = new BufferedWriter(dos); 
+			br = new BufferedWriter(dos);
 
 			for (PhoneNumberInfo numberInfo : phoneNumberDB) {
 				br.write(numberInfo.toString());
